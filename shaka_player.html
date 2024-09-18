@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shaka Player Integration</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.3/shaka-player.compiled.js"></script>
+    <style>
+      video {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <video id="video" controls autoplay></video>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        var video = document.getElementById('video');
+        var player = new shaka.Player(video);
+
+        player.addEventListener('error', onErrorEvent);
+
+        // Replace the URL with your streaming content.
+        var manifestUri = 'https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd';
+
+        player
+          .load(manifestUri)
+          .then(() => {
+            console.log('The video has successfully loaded!');
+          })
+          .catch(onError);
+
+        function onErrorEvent(event) {
+          onError(event.detail);
+        }
+
+        function onError(error) {
+          console.error('Error code', error.code, 'object', error);
+        }
+      });
+    </script>
+  </body>
+</html>
