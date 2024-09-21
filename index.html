@@ -4,9 +4,23 @@
     <title>Shaka Player Integration</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.3/shaka-player.compiled.js"></script>
     <style>
+      /* Supprime les marges et le padding pour que la vidéo occupe tout l'écran */
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      html, body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
       video {
         width: 100%;
         height: 100%;
+        display: block; /* Supprime l'espace sous la vidéo dans certains navigateurs */
+        object-fit: cover; /* Ajuste la vidéo pour remplir l'écran */
       }
     </style>
   </head>
