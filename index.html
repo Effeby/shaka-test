@@ -11,7 +11,7 @@
     </style>
   </head>
   <body>
-    <video id="video" controls autoplay></video>
+    <video id="video" controls autoplay muted></video>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         var video = document.getElementById('video');
@@ -26,6 +26,7 @@
           .load(manifestUri)
           .then(() => {
             console.log('The video has successfully loaded!');
+            video.play(); // Force play after loading if autoplay fails
           })
           .catch(onError);
 
